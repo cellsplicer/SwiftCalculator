@@ -77,11 +77,8 @@
 		CF7A1C3F1AD61AA10018EBF5 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				CF7A1C421AD61AA10018EBF5 /* AppDelegate.swift */,
 				CF7A1C441AD61AA10018EBF5 /* ViewController.swift */,
 				CF7A1C461AD61AA10018EBF5 /* Main.storyboard */,
-				CF7A1C491AD61AA10018EBF5 /* Images.xcassets */,
-				CF7A1C4B1AD61AA10018EBF5 /* LaunchScreen.xib */,
 				CF7A1C401AD61AA10018EBF5 /* Supporting Files */,
 			);
 			path = Calculator;
@@ -90,6 +87,9 @@
 		CF7A1C401AD61AA10018EBF5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CF7A1C491AD61AA10018EBF5 /* Images.xcassets */,
+				CF7A1C4B1AD61AA10018EBF5 /* LaunchScreen.xib */,
+				CF7A1C421AD61AA10018EBF5 /* AppDelegate.swift */,
 				CF7A1C411AD61AA10018EBF5 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -407,6 +407,7 @@
 				CF7A1C5E1AD61AA10018EBF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CF7A1C5F1AD61AA10018EBF5 /* Build configuration list for PBXNativeTarget "CalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +416,7 @@
 				CF7A1C611AD61AA10018EBF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
