@@ -14,6 +14,20 @@ class ViewController: UIViewController
     
     var userIsTyping : Bool = false
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    var calculatorBrain = CalculatorBrain()
+    
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
         if(userIsTyping) {
@@ -29,41 +43,24 @@ class ViewController: UIViewController
         if(userIsTyping) {
             enter()
         }
-        switch operation {
-            case "÷":
-                performOperation{$1 / $0}
-            case "×":
-                performOperation{$0 * $1}
-            case "−":
-                performOperation{$1 - $0}
-            case "+":
-                performOperation{$0 + $1}
-            case "√":
-                performOperation{sqrt($0)}
-            default:
-                break
+        if let operation = sender.currentTitle {
+            if let result = calculatorBrain.performOperation(operation) {
+                displayValue = result
+            } else {
+                // TODO display NIL
+                displayValue = 0;
+            }
         }
     }
-    
-    func performOperation(operation: (Double, Double) -> Double) {
-        if(operandStack.count >= 2) {
-            displayValue = operation(operandStack.removeLast(), operandStack.removeLast())
-            enter()
-        }
-    }
-    
-    func performOperation(operation: (Double) -> Double) {
-        if(operandStack.count >= 1) {
-            displayValue = operation(operandStack.removeLast())
-            enter()
-        }
-    }
-    
-    var operandStack = Array<Double>()
-    
+
     @IBAction func enter() {
         userIsTyping = false;
-        operandStack.append(displayValue)
+        if let result = calculatorBrain.pushOperand(displayValue) {
+            displayValue = result
+        } else {
+            // TODO display NIL
+            displayValue = 0;
+        }
     }
     
     var displayValue: Double {
