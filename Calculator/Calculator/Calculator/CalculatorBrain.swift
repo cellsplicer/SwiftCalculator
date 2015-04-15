@@ -34,13 +34,13 @@ class CalculatorBrain
         func learnOp(op: Op) {
             knownOps[op.description] = op
         }
-        // TODO: use learnOp
-        // TODO: implement sqrt
-        knownOps["÷"] = Op.BinaryOperation("÷") {$1 / $0}
-        knownOps["×"] = Op.BinaryOperation("×") {$0 * $1}
-        knownOps["−"] = Op.BinaryOperation("−") {$1 - $0}
-        knownOps["+"] = Op.BinaryOperation("+") {$0 + $1}
-        knownOps["√"] = Op.UnaryOperation("√", sqrt)
+        learnOp(Op.BinaryOperation("÷", /))
+        learnOp(Op.BinaryOperation("×", *))
+        learnOp(Op.BinaryOperation("−", -))
+        learnOp(Op.BinaryOperation("+", +))
+        learnOp(Op.UnaryOperation("√", sqrt))
+        learnOp(Op.UnaryOperation("sin", sin))
+        learnOp(Op.UnaryOperation("cos", cos))
     }
     
     func evaluate () -> Double? {
