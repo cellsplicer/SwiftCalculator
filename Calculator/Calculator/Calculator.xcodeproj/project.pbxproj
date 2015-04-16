@@ -13,6 +13,7 @@
 		CF7A1C4A1AD61AA10018EBF5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF7A1C491AD61AA10018EBF5 /* Images.xcassets */; };
 		CF7A1C4D1AD61AA10018EBF5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7A1C4B1AD61AA10018EBF5 /* LaunchScreen.xib */; };
 		CF7A1C591AD61AA10018EBF5 /* CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A1C581AD61AA10018EBF5 /* CalculatorTests.swift */; };
+		CF8904101ADFE5B400A312CC /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89040F1ADFE5B400A312CC /* HistoryViewController.swift */; };
 		CFE2DD9E1AD72CEA00C909A8 /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE2DD9D1AD72CEA00C909A8 /* CalculatorBrain.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		CF7A1C521AD61AA10018EBF5 /* CalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF7A1C571AD61AA10018EBF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF7A1C581AD61AA10018EBF5 /* CalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTests.swift; sourceTree = "<group>"; };
+		CF89040F1ADFE5B400A312CC /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		CFE2DD9D1AD72CEA00C909A8 /* CalculatorBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalculatorBrain.swift; path = Calculator/CalculatorBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +85,7 @@
 				CF7A1C441AD61AA10018EBF5 /* ViewController.swift */,
 				CF7A1C461AD61AA10018EBF5 /* Main.storyboard */,
 				CF7A1C401AD61AA10018EBF5 /* Supporting Files */,
+				CF89040F1ADFE5B400A312CC /* HistoryViewController.swift */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				CFE2DD9E1AD72CEA00C909A8 /* CalculatorBrain.swift in Sources */,
 				CF7A1C451AD61AA10018EBF5 /* ViewController.swift in Sources */,
 				CF7A1C431AD61AA10018EBF5 /* AppDelegate.swift in Sources */,
+				CF8904101ADFE5B400A312CC /* HistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

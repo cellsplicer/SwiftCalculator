@@ -43,7 +43,14 @@ class ViewController: UIViewController
                 userIsTyping = true
                 return;
             }
+        } else if (digit == "0") {
+            // 0 entered, special cases
+            if(display.text! == "0") {
+                // Display is "0", do not add more 0s
+                return
+            }
         }
+        // All other digits
         if(userIsTyping) {
             display.text = display.text! + digit
         } else {
@@ -67,9 +74,19 @@ class ViewController: UIViewController
         }
     }
 
+    @IBAction func backspace() {
+        var text = display.text as String!
+        if(userIsTyping && count(text) > 2) {
+            display.text! = text.substringToIndex(advance(text.startIndex, count(text) - 1))
+        } else {
+            display.text! = "0";
+        }
+    }
+    
     @IBAction func clear() {
         // Clear display and use a new brain
-        display.text! = "0.0"
+        display.text! = "0"
+        userIsTyping = false
         calculatorBrain = CalculatorBrain()
     }
     
