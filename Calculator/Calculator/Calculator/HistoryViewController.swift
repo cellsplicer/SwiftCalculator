@@ -9,19 +9,24 @@
 import UIKit
 import Foundation
 
-class HistoryViewController : UIViewController, UITableViewDataSource, UITableViewDelegate
+protocol HistoryViewControllerDelegate : class {
+    func giveStringForIndex(index: Int) -> String
+    func giveNumberOfRows() -> Int
+}
+
+class HistoryViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate
 {
-    @IBOutlet var tableView: UITableView!
-   
-    let swiftBlogs = ["Ray Wenderlich", "NSHipster", "iOS Developer Tips", "Jameson Quave", "Natasha The Robot", "Coding Explorer", "That Thing In Swift", "Andrew Bancroft", "iAchieved.it", "Airspeed Velocity"]
-    
+    @IBOutlet var tbView: UITableView!
+ 
     let textCellIdentifier = "TextCell"
+    
+    var historyViewControllerDelegate : HistoryViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
+        tbView.delegate = self
+        tbView.dataSource = self
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -29,15 +34,22 @@ class HistoryViewController : UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return swiftBlogs.count
+        if ( historyViewControllerDelegate != nil) {
+            var numberOfRows = historyViewControllerDelegate!.giveNumberOfRows()
+            return numberOfRows
+        }
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(textCellIdentifier, forIndexPath: indexPath) as! UITableViewCell
         
         let row = indexPath.row
-        cell.textLabel?.text = swiftBlogs[row]
         
+        if(historyViewControllerDelegate != nil) {
+            cell.textLabel?.text = historyViewControllerDelegate!.giveStringForIndex(indexPath.row)
+        }
+
         return cell
     }
     
@@ -45,5 +57,17 @@ class HistoryViewController : UIViewController, UITableViewDataSource, UITableVi
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let row = indexPath.row
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "popoverSegue" {
+            let popoverViewController = segue.destinationViewController as! UIViewController
+            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
+            popoverViewController.popoverPresentationController!.delegate = self
+        }
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.None
     }
 }

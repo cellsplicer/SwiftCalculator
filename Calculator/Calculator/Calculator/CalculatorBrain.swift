@@ -30,6 +30,8 @@ class CalculatorBrain
     
     private var opStack = [Op]()
     
+    private var history = [String]()
+    
     private var knownOps = [String:Op]()
     
     init() {
@@ -48,7 +50,6 @@ class CalculatorBrain
     
     func evaluate () -> Double? {
         let (result, remainder) = evaluate(opStack)
-        println("\(opStack) = \(result) with \(remainder) left over")
         return result
     }
     
@@ -81,13 +82,19 @@ class CalculatorBrain
 
     func pushOperand(operand: Double) -> Double? {
         opStack.append(Op.Operand(operand))
+        history.append("\(operand)")
         return evaluate()
     }
     
     func performOperation(symbol: String) -> Double? {
         if let operation = knownOps[symbol] {
             opStack.append(operation)
+            history.append(symbol)
         }
         return evaluate()
+    }
+    
+    func getHistory() -> [(String)] {
+        return history
     }
 }

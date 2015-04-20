@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class ViewController: UIViewController
+class ViewController: UIViewController, HistoryViewControllerDelegate
 {
     @IBOutlet weak var display: UILabel!
     
@@ -28,6 +28,8 @@ class ViewController: UIViewController
     }
     
     var calculatorBrain = CalculatorBrain()
+    
+    var hvcDelegate : HistoryViewControllerDelegate! = nil
     
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
@@ -108,6 +110,21 @@ class ViewController: UIViewController
         set {
             display.text = "\(newValue)"
             userIsTyping = false;
+        }
+    }
+    
+    func giveStringForIndex(index: Int) -> String {
+        return calculatorBrain.getHistory()[index]
+    }
+    
+    func giveNumberOfRows() -> Int {
+        return calculatorBrain.getHistory().count
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "popoverSegue" {
+            let vc = segue.destinationViewController as! HistoryViewController
+            vc.historyViewControllerDelegate = self
         }
     }
 }
