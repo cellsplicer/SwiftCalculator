@@ -14,7 +14,7 @@ protocol HistoryViewControllerDelegate : class {
     func giveNumberOfRows() -> Int
 }
 
-class HistoryViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate
+class HistoryViewController : UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     @IBOutlet var tbView: UITableView!
  
@@ -57,17 +57,5 @@ class HistoryViewController : UIViewController, UITableViewDataSource, UITableVi
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let row = indexPath.row
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "popoverSegue" {
-            let popoverViewController = segue.destinationViewController as! UIViewController
-            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
-            popoverViewController.popoverPresentationController!.delegate = self
-        }
-    }
-    
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.None
     }
 }

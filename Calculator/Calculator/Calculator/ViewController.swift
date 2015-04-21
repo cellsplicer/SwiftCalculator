@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class ViewController: UIViewController, HistoryViewControllerDelegate
+class ViewController: UIViewController, UIPopoverPresentationControllerDelegate, HistoryViewControllerDelegate
 {
     @IBOutlet weak var display: UILabel!
     
@@ -122,10 +122,13 @@ class ViewController: UIViewController, HistoryViewControllerDelegate
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if segue.identifier == "popoverSegue" {
-            let vc = segue.destinationViewController as! HistoryViewController
-            vc.historyViewControllerDelegate = self
-        }
+        let vc = segue.destinationViewController as! HistoryViewController
+        vc.historyViewControllerDelegate = self
+        vc.popoverPresentationController!.delegate = self
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
     }
 }
 
